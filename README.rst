@@ -21,6 +21,7 @@ Moved to settings_.
 
 Basic Commands
 --------------
+https://github.com/bugbytes-io/django-htmx
 
 Setting Up Your Users
 ^^^^^^^^^^^^^^^^^^^^^
