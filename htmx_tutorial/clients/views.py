@@ -22,3 +22,10 @@ def add_client(request):
 
     context = {'clients': Client.objects.all()}
     return render(request, 'partials/client-list.html', context)
+
+
+def delete_client(request, pk):
+    Client.objects.filter(pk=pk).delete()
+
+    context = {'clients': Client.objects.all()}
+    return render(request, 'partials/client-list.html', context)
