@@ -3,15 +3,15 @@
 <div class="align-center col-10 offset-1">
     <div class="d-flex justify-content-between align-items-center">
         <p class="lead ml-0">Clients</p>
-        <form hx-post="{% url 'clients:add-client' %}" hx-target='#film-list' class="d-flex align-items-center">
+        <form hx-post="{% url 'clients:add-client' %}" hx-target='#client-list' class="d-flex align-items-center">
             {% csrf_token %}
             <input type="text" name="client-name" class="form-control-sm mr-2" placeholder="Enter a client  name" />
-            <button type="submit" class="btn btn-success btn-sm">Add Client</button>
+            <button type="submit" class="btn btn-success btn-sm" >Add Client</button>
         </form>
     </div>
     <hr/>
-    
-    <div id="film-list">
+
+    <div id="client-list">
         {% include 'partials/client-list.html' %}
     </div>
 </div>
