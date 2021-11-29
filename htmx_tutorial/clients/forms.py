@@ -32,6 +32,9 @@ class SimpleClientForm(forms.Form):
 
     def save(self):
         data = self.cleaned_data
-        client = Client.objects.get_or_create(first_name=data['first_name'], last_name=data['last_name'])
+        client, _ = Client.objects.get_or_create(first_name=data['first_name'], last_name=data['last_name'])
+        if not client.is_active:
+            client.is_active = True
+            client.save()
         return client
 

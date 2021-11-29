@@ -1,0 +1,17 @@
+{% if results %}
+    {% csrf_token %}
+    <ul class="list-group col-xs-12">
+    {% for client in results %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{ client.last_name }}, {{ client.first_name }}
+            <span class="btn btn-sm btn-primary"
+                style="cursor: pointer;"
+                hx-post="{% url 'clients:add-client' %}"
+                hx-vals='{"client-name": "{{ client.last_name }}, {{ client.first_name }}"}'
+                hx-target="#client-list">add</span>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No search results</p>
+{% endif %}

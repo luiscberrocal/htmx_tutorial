@@ -9,6 +9,8 @@ class Client(models.Model):
     last_name = models.CharField(_('Last name'), max_length=50)
     national_id = models.CharField(_('National id'), max_length=80, null=True, blank=True)
     metadata = models.JSONField(_('Metadata'), null=True, blank=True)
+    is_active = models.BooleanField(_('Is active'), default=True)
+    sex = models.CharField(_('Sex'), max_length=1, default='U')
 
     class Meta:
         ordering = ('last_name', 'first_name')
