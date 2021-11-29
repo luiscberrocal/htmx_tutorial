@@ -37,3 +37,10 @@ def delete_client(request, pk):
 
     context = {'clients': Client.objects.all()}
     return render(request, 'partials/client-list.html', context)
+
+
+def search_client(request):
+    search_text = request.POST.get('search')
+    results = Client.objects.filter(last_name__icontains=search_text)
+    context = {'results': results}
+    return render(request, 'partials/search-results.html', context)
