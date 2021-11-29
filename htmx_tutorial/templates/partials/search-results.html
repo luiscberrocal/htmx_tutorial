@@ -1,14 +1,13 @@
 {% if results %}
-
     {% csrf_token %}
     <ul class="list-group col-xs-12">
-    {% for film in results %}
+    {% for client in results %}
         <li class="list-group-item d-flex justify-content-between align-items-center">
           {{ client.last_name }}, {{ client.first_name }}
-            <span class="badge badge-success badge-pill"
+            <span class="btn btn-sm btn-primary"
                 style="cursor: pointer;"
-                hx-post="{% url 'add-client' %}"
-                hx-vals='{"client_id": "{{client.id}}"}'
+                hx-post="{% url 'clients:add-client' %}"
+                hx-vals='{"client-name": "{{ client.last_name }}, {{ client.first_name }}"}'
                 hx-target="#client-list">add</span>
         </li>
     {% endfor %}
