@@ -1,7 +1,9 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse
 from django.shortcuts import render
-
+from django.utils.translation import ugettext_lazy as _
 # Create your views here.
 from django.views.decorators.http import require_http_methods
 from django.views.generic import ListView
@@ -29,6 +31,8 @@ def add_client(request):
     form = SimpleClientForm(data={'input_text': client_name})
     if form.is_valid():
         form.save()
+    else:
+        messages.error(request, _('Error parsing client name.'))
 
     context = {'clients': Client.objects.filter(is_active=True).all()}
     return render(request, 'partials/client-list.html', context)
@@ -50,3 +54,7 @@ def search_client(request):
     results = Client.objects.filter(last_name__icontains=search_text, is_active=False)
     context = {'results': results}
     return render(request, 'partials/search-results.html', context)
+
+@login_required
+def clear(request):
+    return HttpResponse('')
