@@ -11,6 +11,7 @@ class Client(models.Model):
     metadata = models.JSONField(_('Metadata'), null=True, blank=True)
     is_active = models.BooleanField(_('Is active'), default=True)
     sex = models.CharField(_('Sex'), max_length=1, default='U')
+    display_order = models.PositiveIntegerField(_('Display Order'), default=0)
 
     class Meta:
         ordering = ('last_name', 'first_name')
