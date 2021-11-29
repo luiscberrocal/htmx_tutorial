@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"
           integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
     <!-- Your stuff: Third-party CSS libraries go here -->
     <!-- This file stores project-specific CSS -->
     <link href="{% static 'css/project.css' %}" rel="stylesheet">
@@ -98,7 +98,16 @@
   {% endif %}
 
   {% block content %}
-    <p>Use this document as a way to quick start any new project.</p>
+    <a class="btn btn-sm btn-primary" href="{% url 'clients:clients-list' %}">Clients</a>
+    <ul>
+      <li>
+        Based on tutorial from bugbites <a href="https://github.com/bugbytes-io/django-htmx">Github repo</a>
+      </li>
+      <li>
+        Using bootstrap icons <a href="https://icons.getbootstrap.com/">Link</a>
+      </li>
+    </ul>
+
   {% endblock content %}
 
 </div> <!-- /container -->
