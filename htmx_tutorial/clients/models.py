@@ -14,7 +14,7 @@ class Client(models.Model):
     display_order = models.PositiveIntegerField(_('Display Order'), default=0)
 
     class Meta:
-        ordering = ('last_name', 'first_name')
+        ordering = ('display_order', 'last_name', 'first_name')
 
     def __str__(self):
         display_name = f'{self.last_name}, {self.first_name}'
