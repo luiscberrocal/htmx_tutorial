@@ -2,6 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 
 from htmx_tutorial.clients.models import Client
+from htmx_tutorial.clients.utils import get_max_order
 
 
 class SimpleClientForm(forms.Form):
@@ -34,12 +35,12 @@ class SimpleClientForm(forms.Form):
         data = self.cleaned_data
         if Client.objects.filter(first_name=data['first_name'], last_name=data['last_name']).exists():
             client = Client.objects.get(first_name=data['first_name'], last_name=data['last_name'])
-            client.display_order = 1
+            client.display_order = get_max_order()
             client.is_active = True
             client.save()
         else:
             client = Client.objects.create(first_name=data['first_name'], last_name=data['last_name'],
-                                           display_order=1)
+                                           display_order=get_max_order())
         # client, _ = Client.objects.get_or_create(first_name=data['first_name'], last_name=data['last_name'])
         # if not client.is_active:
         #     client.is_active = True
