@@ -10,7 +10,7 @@
       </ul>
     {% endif %}
     {% if clients %}
-      <form class="sortable list-group col-12" hx-trigger="end" hx-post="/sort" hx-target="client-list">
+      <form class="sortable list-group col-12" hx-trigger="end" hx-post="{% url 'clients:sort-client' %}" hx-target="#client-list">
         <div class="htmx-indicator">Updating...</div>
         {% for client in clients %}
           <div>

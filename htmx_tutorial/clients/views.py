@@ -58,3 +58,16 @@ def search_client(request):
 @login_required
 def clear(request):
     return HttpResponse('')
+
+@login_required
+@require_http_methods(['POST'])
+def sort_clients(request):
+    client_pks_order = request.POST.getlist('client_order')
+    client_list = []
+    for idx, client_pk in enumerate(client_pks_order, start=1):
+        client = Client.objects.get(pk=client_pk)
+        client.display_order = idx
+        client.save()
+        client_list.append(client)
+
+    return render(request, 'partials/client-list.html', {'clients': client_list})
