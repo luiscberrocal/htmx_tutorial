@@ -41,7 +41,7 @@ def add_client(request):
 @login_required
 @require_http_methods(['DELETE'])
 def delete_client(request, pk):
-    Client.objects.filter(pk=pk).update(is_active=False)
+    Client.objects.filter(pk=pk).update(is_active=False, display_order=0)
 
     context = {'clients': Client.objects.filter(is_active=True).all()}
     return render(request, 'partials/client-list.html', context)

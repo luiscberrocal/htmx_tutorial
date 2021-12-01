@@ -3,7 +3,7 @@
     <ul class="list-group col-xs-12">
     {% for client in results %}
         <li class="list-group-item d-flex justify-content-between align-items-center">
-          {{ client.last_name }}, {{ client.first_name }} ({{ client.pk }}):w
+          {{ client.last_name }}, {{ client.first_name }} ({{ client.pk }})
             <span class="btn btn-sm btn-primary"
                 style="cursor: pointer;"
                 hx-post="{% url 'clients:add-client' %}"
