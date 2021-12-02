@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 # Create your views here.
 from django.views.decorators.http import require_http_methods
@@ -71,3 +71,10 @@ def sort_clients(request):
         client_list.append(client)
 
     return render(request, 'partials/client-list.html', {'clients': client_list})
+
+@login_required
+@require_http_methods(['GET'])
+def detail_client(request, pk):
+    client = get_object_or_404(Client, pk=pk)
+    context = {'client': client}
+    return render(request, 'partials/client-detail.html', context)
