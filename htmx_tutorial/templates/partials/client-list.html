@@ -2,7 +2,7 @@
   <p class="h2 col-2">Clients</p>
   <form hx-post="{% url 'clients:add-client' %}" hx-target='#client-list' class="col-10">
     {% csrf_token %}
-    <input type="text" name="client-name" class="form-control-sm mr-2" placeholder="Enter a client  name"/>
+    <input type="text" name="client-name" class="" placeholder="Enter a client  name"/>
     <button type="submit" class="btn btn-success btn-sm">Add Client</button>
   </form>
 </div>
