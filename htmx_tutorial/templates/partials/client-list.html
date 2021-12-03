@@ -1,6 +1,6 @@
-<div class="d-flex justify-content-between align-items-center">
-  <p class="lead ml-0">Clients</p>
-  <form hx-post="{% url 'clients:add-client' %}" hx-target='#client-list' class="d-flex align-items-center">
+<div class="row">
+  <p class="h2 col-2">Clients</p>
+  <form hx-post="{% url 'clients:add-client' %}" hx-target='#client-list' class="col-10">
     {% csrf_token %}
     <input type="text" name="client-name" class="form-control-sm mr-2" placeholder="Enter a client  name"/>
     <button type="submit" class="btn btn-success btn-sm">Add Client</button>
@@ -23,7 +23,7 @@
             hx-target="#client-list">
         <div class="htmx-indicator">Updating...</div>
           {% for client in clients %}
-            <div class="row">
+            <div class="row gx-2 border client-row">
               <input type="hidden" name="client_order" value="{{ client.pk }}"/>
               <div class="col">
                 <a hx-get="{% url 'clients:detail-client' client.pk %}" hx-target="#client-list">

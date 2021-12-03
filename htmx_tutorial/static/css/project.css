@@ -11,3 +11,8 @@
   background-color: #f2dede;
   border-color: #eed3d7;
 }
+
+.client-row {
+  background-color: antiquewhite;
+  border-bottom: 1rem;
+}
