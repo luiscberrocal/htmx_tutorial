@@ -99,15 +99,24 @@
   {% endif %}
 
   {% block content %}
-    <a class="btn btn-sm btn-primary" href="{% url 'clients:clients-list' %}">Clients</a>
-    <ul>
-      <li>
-        Based on tutorial from bugbites <a href="https://github.com/bugbytes-io/django-htmx">Github repo</a>
-      </li>
-      <li>
-        Using bootstrap icons <a href="https://icons.getbootstrap.com/">Link</a>
-      </li>
-    </ul>
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <a class="btn btn-sm btn-primary" href="{% url 'clients:clients-list' %}">Clients</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          Based on tutorial from bugbites <a href="https://github.com/bugbytes-io/django-htmx">Github repo</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          Using bootstrap icons <a href="https://icons.getbootstrap.com/">Link</a>
+        </div>
+      </div>
+    </div>
+    </div>
 
   {% endblock content %}
 
