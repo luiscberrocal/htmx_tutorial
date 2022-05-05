@@ -12,19 +12,6 @@ from .forms import SimpleClientForm
 from .models import Client
 
 
-class ClientListView(LoginRequiredMixin, ListView):
-    template_name = 'clients/clients.html'
-    model = Client
-    context_object_name = 'clients'
-
-    def get_queryset(self):
-        qs = Client.objects.filter(is_active=True)
-        return qs
-
-
-client_list_view = ClientListView.as_view()
-
-
 @login_required
 def add_client(request):
     client_name = request.POST.get('client-name')
@@ -55,9 +42,11 @@ def search_client(request):
     context = {'results': results}
     return render(request, 'partials/search-results.html', context)
 
+
 @login_required
 def clear(request):
     return HttpResponse('')
+
 
 @login_required
 @require_http_methods(['POST'])
@@ -71,3 +60,45 @@ def sort_clients(request):
         client_list.append(client)
 
     return render(request, 'partials/client-list.html', {'clients': client_list})
+
+
+class ClientCreateView(LoginRequiredMixin, CreateView):
+    model = Client
+    form_class = ClientForm
+    success_url = reverse_lazy('clients:list-client')
+
+
+client_create_view = ClientCreateView.as_view()
+
+
+class ClientUpdateView(LoginRequiredMixin, UpdateView):
+    model = Client
+    form_class = ClientForm
+    success_url = reverse_lazy('clients:list-client')
+
+
+client_update_view = ClientUpdateView.as_view()
+
+
+class ClientListView(LoginRequiredMixin, ListView):
+    model = Client
+    context_object_name = 'client_list'
+    paginate_by = 10
+
+
+client_list_view = ClientListView.as_view()
+
+
+class ClientDeleteView(LoginRequiredMixin, DeleteView):
+    model = Client
+    success_url = reverse_lazy('clients:list-client')
+
+
+client_delete_view = ClientDeleteView.as_view()
+
+
+class ClientDetailView(LoginRequiredMixin, DetailView):
+    model = Client
+
+
+client_detail_view = ClientDetailView.as_view()
